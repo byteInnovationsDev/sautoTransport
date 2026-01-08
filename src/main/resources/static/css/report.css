@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f2f2f2;
+}
+
+/* Layout */
+.layout {
+  display: flex;
+  width: 1200px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 10px;
+}
+
+
+
+.menu {
+  width: 100%;
+  padding: 12px;
+  background: #ffe066;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.menu.active {
+  background: #ffd43b;
+}
+
+.menu.empty {
+  height: 40px;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Top cards */
+.top-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+}
+
+.card.dark {
+  background: #555;
+  color: #fff;
+}
+
+.card.light {
+  background: #f4f4f4;
+}
+
+.card.overall {
+  background: #e6e6e6;
+}
+
+/* Circle */
+.circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 12px solid #f4b942;
+  border-left-color: #fff;
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+/* Semi circle */
+.semi-circle {
+  width: 120px;
+  height: 60px;
+  border: 12px solid #4dabf7;
+  border-bottom: none;
+  border-radius: 120px 120px 0 0;
+  margin: 10px auto;
+}
+
+/* Donut */
+.donut {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #4dabf7 0% 35%,
+    #63e6be 35% 70%,
+    #adb5bd 70% 100%
+  );
+  margin: 15px auto;
+}
+
+/* Progress Bars */
+.bar, .row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.progress {
+  flex: 1;
+  height: 10px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress div {
+  height: 100%;
+  background: #3bc9db;
+}
+
+/* Bottom Card */
+.bottom-card {
+  background: #6c6c6c;
+  color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 25px;
+}
+
+.bottom-card h4 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+
+.sidebar {
+  width: 240px;
+  background: #f2f2f2;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Logo */
+.logo-box {
+  display: flex;
+  justify-content: center;
+ 
+}
+
+
+.logo-box img {
+  width: 160px;
+}
+
+/* Navigation buttons */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 12px;
+  background: #ffd84d;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+   text-decoration: none;
+     color: inherit;
+}
+
+.nav i {
+  font-size: 16px;
+}
+
+.nav:hover {
+  background: #ffcc00;
+}
+
+/* Active */
+.nav.active {
+  background: #000;
+  color: #fff;
+}
+
+.nav.active i {
+  color: #fff;
+}
+
+
+

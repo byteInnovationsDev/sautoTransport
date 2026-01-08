@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(
+        to bottom,
+        #9e9e9e 0%,
+        #cfcfcf 45%,
+        #ffffff 100%
+    );
+}
+
+/* MAIN CONTAINER */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT SIDE IMAGE */
+.left {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        to bottom,
+        #9e9e9e 0%,
+        #cfcfcf 45%,
+        #ffffff 100%
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+/* SUBTLE DECOR SHAPE */
+.left::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,212,59,0.25), transparent 70%);
+    bottom: -80px;
+    left: -80px;
+}
+
+.left img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    margin-left: 130px;
+    z-index: 2;
+}
+
+/* RIGHT LOGIN */
+.right {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+/* LOGIN CARD */
+.login-card {
+    width: 460px;
+    height: 400px;
+    padding: 40px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.25),
+        inset 0 0 0 1px rgba(255, 212, 59, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* CARD DECOR STRIP */
+.login-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 100%;
+    background: linear-gradient(
+        to right,
+        #ffd43b,
+        #fcc419,
+        #f59f00
+    );
+}
+
+/* TITLE */
+.login-card h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 22px;
+    color: #333;
+    letter-spacing: 0.6px;
+}
+
+/* INPUT BOX */
+.input-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d1b800;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background: linear-gradient(
+        to bottom,
+        #fffef6,
+        #fff8d6
+    );
+    transition: 0.3s ease;
+}
+
+.input-box i {
+    margin-right: 10px;
+    color: #8a7a00;
+    font-size: 15px;
+}
+
+.input-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    background: transparent;
+}
+
+/* INPUT FOCUS */
+.input-box:focus-within {
+    border-color: #b59f00;
+    box-shadow: 0 0 0 3px rgba(255, 212, 59, 0.4);
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(
+        to right,
+        #ffd43b,
+        #fcc419,
+        #f59f00
+    );
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* BUTTON SHINE */
+button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,0.5),
+        transparent
+    );
+    transition: 0.6s;
+}
+
+button:hover::after {
+    left: 100%;
+}
+
+button i {
+    margin-left: 8px;
+}
+
+/* BUTTON HOVER */
+button:hover {
+    background: linear-gradient(
+        to right,
+        #fcc419,
+        #f59f00,
+        #e67700
+    );
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+    transform: translateY(-2px);
+}
+
+/* FOOTER TEXT */
+.footer-text {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 12px;
+    color: #555;
+}
+
+/* SIGN UP TEXT */
+.signup-text {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #555;
+}
+
+.signup-text a {
+    color: #b59f00;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 4px;
+    transition: 0.3s ease;
+}
+
+.signup-text a:hover {
+    color: #8a7a00;
+    text-decoration: underline;
+}

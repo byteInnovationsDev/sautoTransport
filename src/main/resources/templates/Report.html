@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <link rel="stylesheet" href="/css/report.css">
+</head>
+<body>
+
+<div class="layout">
+
+ <aside class="sidebar">
+  <div class="logo-box">
+    <img src="/images/logo.png" alt="Logo">
+  </div>
+
+  <a href="home" class="nav">
+    <i class="fa-solid fa-house"></i>
+    <span>Dashboard</span>
+  </a>
+
+  <a href="payments" class="nav">
+    <i class="fa-solid fa-indian-rupee-sign"></i>
+    <span>Payment</span>
+  </a>
+
+  <a href="report" class="nav active">
+    <i class="fa-solid fa-chart-line"></i>
+    <span>Report</span>
+  </a>
+
+  <a href="billing" class="nav">
+    <i class="fa-solid fa-file-invoice"></i>
+    <span>Billing</span>
+  </a>
+</aside>
+
+
+  <!-- Main Content -->
+  <main class="content">
+
+    <!-- Top Cards -->
+    <div class="top-cards">
+
+      <!-- Rent Pending -->
+      <div class="card dark">
+        <h4>
+          <i class="fa-solid fa-clock"></i>
+          NO OF RENT PENDING DUES
+        </h4>
+
+        <div class="circle">
+          <span>XX</span>
+        </div>
+        <p>/XX</p>
+      </div>
+
+      <!-- Insurance -->
+      <div class="card light">
+        <div class="semi-circle"></div>
+
+        <h2>
+          <i class="fa-solid fa-shield-halved"></i> XX
+        </h2>
+        <p>/XX</p>
+
+        <small>
+          <i class="fa-solid fa-file-shield"></i>
+          NO OF PENDING INSURANCE
+        </small>
+      </div>
+
+      <!-- Overall -->
+      <div class="card overall">
+        <h3>
+          <i class="fa-solid fa-chart-pie"></i>
+          OVERALL
+        </h3>
+
+        <div class="donut"></div>
+
+        <div class="bar">
+          <span><i class="fa-solid fa-id-card"></i> FC</span>
+          <div class="progress"><div style="width:70%"></div></div>
+        </div>
+
+        <div class="bar">
+          <span><i class="fa-solid fa-car"></i> RC</span>
+          <div class="progress"><div style="width:55%"></div></div>
+        </div>
+
+        <div class="bar">
+          <span><i class="fa-solid fa-gauge"></i> PUC</span>
+          <div class="progress"><div style="width:60%"></div></div>
+        </div>
+
+        <div class="bar">
+          <span><i class="fa-solid fa-file-circle-check"></i> NOC</span>
+          <div class="progress"><div style="width:40%"></div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Card -->
+    <div class="bottom-card">
+      <h4>
+        <i class="fa-solid fa-hourglass-half"></i>
+        NO OF PENDING
+      </h4>
+
+      <div class="row">
+        <span><i class="fa-solid fa-id-card"></i> FC</span>
+        <div class="progress"><div style="width:75%"></div></div>
+        <span>XX</span>
+      </div>
+
+      <div class="row">
+        <span><i class="fa-solid fa-car"></i> RC</span>
+        <div class="progress"><div style="width:65%"></div></div>
+        <span>XX</span>
+      </div>
+
+      <div class="row">
+        <span><i class="fa-solid fa-gauge"></i> PUC</span>
+        <div class="progress"><div style="width:70%"></div></div>
+        <span>XX</span>
+      </div>
+
+      <div class="row">
+        <span><i class="fa-solid fa-file-circle-check"></i> NOC</span>
+        <div class="progress"><div style="width:60%"></div></div>
+        <span>XX</span>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

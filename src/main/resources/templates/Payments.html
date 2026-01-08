@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vehicle Dashboard</title>
+<link rel="stylesheet" href="/css/payments.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+</head>
+
+<body>
+
+	<div class="wrapper">
+
+		<aside class="sidebar">
+			<div class="logo-box">
+				<img src="/images/logo.png" alt="Logo">
+			</div>
+
+			<a href="home" class="nav"> <i class="fa-solid fa-house"></i>
+				<span>Dashboard</span>
+			</a> <a href="payments" class="nav active"> <i
+				class="fa-solid fa-indian-rupee-sign"></i> <span>Payment</span>
+			</a> <a href="billing" class="nav"> <i
+				class="fa-solid fa-file-invoice"></i> <span>Billing</span>
+			</a>
+		</aside>
+
+		<div class="content">
+			<div class="header">LIST OF VEHICLE</div>
+
+			<div th:each="v, stat : ${vehicles}" class="vehicle-card vehicle"
+				th:data-vehicleno="${v.vehicleNo}" th:data-driver="${v.driverName}"
+				th:data-fc-exp="${v.fcExpiryDate}"
+				th:data-rc-exp="${v.rcExpiryDate}"
+				th:data-noc-exp="${v.nocExpiryDate}"
+				th:data-license-exp="${v.licenseExpiryDate}">
+				<div class="vehicle-left">
+					<div class="avatar">
+						<i class="fa fa-user"></i>
+					</div>
+					<label th:text="${v.vehicleNo}"></label> <br> <label
+						th:text="${v.driverName}"></label>
+				</div>
+				<div class="actions">
+					<button th:data-vehicleno="${v.vehicleNo}"
+						th:data-driver="${v.driverName}" id="paymentDtls">Payment</button>
+					<button id="viewDtls">View</button>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal" id="paymentModal">
+		<div class="modal-box">
+			<span class="close" onclick="closeAll()">&times;</span>
+			<div class="modal-title">ADD PAYMENT INFO</div>
+
+			<div class="form-group">
+				<label>Enter Date</label> <input type="date" id="paymentDate">
+			</div>
+
+			<div class="form-group">
+				<label>Enter Amount</label> <input type="number"
+					placeholder="₹ Amount" id="paymentAmt">
+			</div>
+
+			<button class="save-payment" id="savePayment">SAVE THE
+				PAYMENT</button>
+		</div>
+	</div>
+
+	<!-- ===== View Modal ===== -->
+	<div class="modal" id="viewModal">
+		<div class="modal-box">
+			<span class="close" onclick="closeAll()">&times;</span>
+			<div class="modal-title">VEHICLE DETAILS</div>
+
+			<div class="grid">
+				<div>
+					<label>Vehicle No</label> <input type="text" id="vehicleNo" readonly="readonly">
+				</div>
+				<div>
+					<label>Category</label> <input type="text" id="category" readonly="readonly">
+				</div>
+				<div>
+					<label>Driver Name</label> <input type="text" id="driverName" readonly="readonly">
+				</div>
+				<div>
+					<label>Driver Phone No</label> <input type="text"
+						id="driverPhoneNo" readonly="readonly">
+				</div>
+			</div>
+
+			<div class="docs">
+				<b>Upload Documents</b>
+
+				<div class="doc-row doc-disabled">
+					<div class="doc-left">
+						<div class="doc-title">Vehicle FC</div>
+						<p id="fcFileName" class="doc-name"
+							style="margin: 5px 0; color: green;"></p>
+					</div>
+
+					<div class="doc-right">
+						<div class="doc-actions">
+							<button type="button" class="view-btn view-doc" data-type="fc">View</button>
+							<button type="button" class="download-btn" data-type="fc">Download</button>
+						</div>
+						<div class="expiry">
+							<label>Expiry Date</label> <input type="date" readonly="readonly" id="fcExpdt">
+						</div>
+					</div>
+				</div>
+
+				<div class="doc-row doc-disabled">
+					<div class="doc-left">
+						<div class="doc-title">Vehicle NOC</div>
+						<p id="nocFileName" class="doc-name"
+							style="margin: 5px 0; color: green;"></p>
+					</div>
+
+					<div class="doc-right">
+						<div class="doc-actions">
+							<button type="button" class="view-btn view-doc" data-type="noc">View</button>
+							<button type="button" class="download-btn" data-type="noc">Download</button>
+						</div>
+						<div class="expiry">
+							<label>Expiry Date</label> <input type="date" readonly="readonly" id="nocExpdt">
+						</div>
+					</div>
+				</div>
+
+				<div class="doc-row doc-disabled">
+					<div class="doc-left">
+						<div class="doc-title">Vehicle RC</div>
+						<div>
+							<p id="rcFileName" class="doc-name"
+								style="margin: 5px 0; color: green;"></p>
+						</div>
+					</div>
+
+					<div class="doc-right">
+						<div class="doc-actions">
+							<button type="button" class="view-btn view-doc" data-type="rc">View</button>
+							<input type="file" id="uploadRcFile" style="display: none">
+							<button type="button" class="download-btn" data-type="rc">Download</button>
+						</div>
+						<div class="expiry">
+							<label>Expiry Date</label> <input type="date" readonly="readonly" id="rcExpdt">
+						</div>
+					</div>
+				</div>
+
+				<div class="doc-row doc-disabled">
+					<div class="doc-left">
+						<div class="doc-title">Driver Aadhar Card</div>
+						<div>
+							<p id="aadharFileName" class="doc-name"
+								style="margin: 5px 0; color: green;"></p>
+						</div>
+					</div>
+
+					<div class="doc-right" style="margin-right: 60px;">
+						<div class="doc-actions">
+							<button type="button" class="view-btn view-doc"
+								data-type="aadhar">View</button>
+							<input type="file" id="uploadAadharFile" style="display: none">
+							<button type="button" class="download-btn" data-type="aadhar">Download</button>
+
+						</div>
+					</div>
+				</div>
+				
+				<div class="doc-row doc-disabled">
+					<div class="doc-left">
+						<div class="doc-title">Driver License</div>
+						<div>
+							<p id="licenseFileName" class="doc-name"
+								style="margin: 5px 0; color: green;"></p>
+						</div>
+					</div>
+
+					<div class="doc-right">
+						<div class="doc-actions">
+							<button type="button" class="view-btn view-doc"
+								data-type="license">View</button>
+							<input type="file" id="uploadLicenseFile" style="display: none">
+							<button type="button" class="download-btn" data-type="license">Download</button>
+
+						</div>
+						<div class="expiry">
+							<label>Expiry Date</label> <input type="date" readonly="readonly" id="licenseExpdt">
+						</div>
+					</div>
+				</div>
+				
+				<div class="doc-row doc-disabled">
+					<div class="doc-left">
+						<div class="doc-title">Vehicle Insurance</div>
+						<div>
+							<p id="insuranceFileName" class="doc-name"
+								style="margin: 5px 0; color: green;"></p>
+						</div>
+					</div>
+
+					<div class="doc-right">
+						<div class="doc-actions">
+							<button type="button" class="view-btn view-doc"
+								data-type="insurance">View</button>
+							<input type="file" id="uploadInsuranceFile" style="display: none">
+							<button type="button" class="download-btn" data-type="insurance">Download</button>
+
+						</div>
+						<div class="expiry">
+							<label>Expiry Date</label> <input type="date" readonly="readonly" id="insuranceExpdt">
+						</div>
+					</div>
+				</div>
+				
+				<div class="doc-row doc-disabled">
+					<div class="doc-left">
+						<div class="doc-title">Vehicle PUC</div>
+						<div>
+							<p id="pucFileName" class="doc-name"
+								style="margin: 5px 0; color: green;"></p>
+						</div>
+					</div>
+
+					<div class="doc-right">
+						<div class="doc-actions">
+							<button type="button" class="view-btn view-doc"
+								data-type="puc">View</button>
+							<input type="file" id="uploadPucFile" style="display: none">
+							<button type="button" class="download-btn" data-type="puc">Download</button>
+
+						</div>
+						<div class="expiry">
+							<label>Expiry Date</label> <input type="date" readonly="readonly" id="pucExpdt">
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+
+	<script>
+function closeAll(){
+    document.querySelectorAll('.modal').forEach(m=>{
+        m.style.display='none';
+    });
+}
+function openPayment(){
+    closeAll();
+    document.getElementById('paymentModal').style.display='flex';
+}
+function openView(){
+    closeAll();
+    document.getElementById('viewModal').style.display='flex';
+}
+
+</script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/Payments.js"></script>
+</body>
+</html>

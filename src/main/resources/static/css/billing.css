@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body {
+    background: #9e9e9e;
+}
+
+/* Layout */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background: #ffffff;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-right: 2px solid #ccc;
+}
+
+.logo-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.logo-box img {
+    width: 150px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border-radius: 12px;
+    background: #ffd84d;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+
+.nav:hover {
+    background: #ffcc00;
+}
+
+.nav.active {
+    background: #000;
+    color: #fff;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+}
+
+/* Vehicle Section */
+.vehicle-section {
+    width: 55%;
+}
+
+.vehicle-section h2 {
+    background: #ffe066;
+    padding: 12px;
+    text-align: center;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.vehicle-list {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 520px;
+    overflow-y: auto;
+}
+
+.vehicle-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+}
+
+.vehicle-item.active {
+    border: 2px solid #7b4dff;
+    border-radius: 6px;
+}
+
+.vehicle-item i {
+    font-size: 32px;
+    color: #666;
+}
+
+.vehicle-item p {
+    font-size: 12px;
+    color: #555;
+}
+
+/* Billing */
+.billing-section {
+    width: 40%;
+}
+
+.billing-header {
+    background: #ffe066;
+    text-align: center;
+    font-weight: bold;
+    padding: 16px;
+    border-radius: 25px;
+    margin-bottom: 12px;
+    height: 60px;
+}
+
+.billing-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    border: 2px solid #ccc;
+    height: 325px;
+    margin-top: 13%;
+}
+
+.billing-card h3 {
+    text-align: center;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.dashed {
+    border-top: 2px dashed #000;
+    margin: 20px 0;
+}
+
+.invoice-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoice-row input {
+    width: 130px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+}
+
+
+
+.date-row select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+}
+
+.generate-btn {
+    width: 100%;
+    padding: 12px;
+    background: #ffe066;
+    border: 2px solid #000;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.date-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.date-row i {
+    font-size: 18px;
+    color: #555;
+}
+
+.date-row input[type="month"],
+.date-row input[type="date"] {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.vehicle-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.vehicle-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.vehicle-list::-webkit-scrollbar-thumb {
+    background: #ffd84d;
+    border-radius: 10px;
+}
+
+.vehicle-list::-webkit-scrollbar-thumb:hover {
+    background: #ffcc00;
+}
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 10px 16px;
+    border-radius: 30px;
+    width: 260px;
+    margin: 15px;	
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.search-box i {
+    color: #999;
+    margin-right: 8px;
+}
+
+#no-records {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    min-height: 520px;
+    overflow-y: auto;
+}

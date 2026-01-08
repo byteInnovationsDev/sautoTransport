@@ -1,0 +1,270 @@
+*{
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+body{
+    margin:0;
+    background:#7a7a7a;
+}
+
+/* ===== Layout ===== */
+.wrapper{
+    display:flex;
+    height:100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #f2f2f2;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Logo */
+.logo-box {
+  display: flex;
+  justify-content: center;
+ 
+}
+
+
+.logo-box img {
+  width: 160px;
+}
+
+/* Navigation buttons */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 12px;
+  background: #ffd84d;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+   text-decoration: none;
+     color: inherit;
+}
+
+.nav i {
+  font-size: 16px;
+}
+
+.nav:hover {
+  background: #ffcc00;
+}
+
+/* Active */
+.nav.active {
+  background: #000;
+  color: #fff;
+}
+
+.nav.active i {
+  color: #fff;
+}
+.menu button{
+    width:100%;
+    padding:12px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:8px;
+    background:#f2d35c;
+    cursor:pointer;
+    font-size:15px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.menu button:hover{
+    background:#e0c04d;
+}
+
+.content{
+    flex:1;
+    padding:20px;
+}
+.header{
+    background:#f2d35c;
+    padding:12px;
+    text-align:center;
+    font-weight:bold;
+    border-radius:6px;
+    margin-bottom:15px;
+}
+
+/* ===== Vehicle Card ===== */
+.vehicle{
+    background:#d9d9d9;
+    padding:12px;
+    margin-bottom:10px;
+    border-radius:6px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.vehicle-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.avatar{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#aaa;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.actions button{
+    border:none;
+    padding:8px 14px;
+    border-radius:4px;
+    cursor:pointer;
+    color:black;
+}
+.payment-btn{ background:#0d6efd; }
+.view-btn{ background:#198754; }
+
+/* ===== Modal Common ===== */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+}
+.modal-box {
+    background: #e6e6e6;
+    width: 750px;
+    border-radius: 12px;
+    padding: 25px;
+    position: relative;
+    top: 7%;
+    left: 28%;
+    height: 80%;
+}
+.download-btn {
+    background: #8bc34a;
+}
+.close{
+    position:absolute;
+    right:5px;
+    top:5px;
+    font-size:30px;
+    cursor:pointer;
+    
+}
+.modal-title{
+    background:#f2d35c;
+    padding:10px;
+    text-align:center;
+    font-weight:bold;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+/* ===== Payment Popup ===== */
+.form-group{
+    margin-bottom:12px;
+}
+.form-group label{
+    display:block;
+    margin-bottom:5px;
+}
+.form-group input{
+    width:100%;
+    padding:8px;
+    border-radius:6px;
+    border:1px solid #aaa;
+}
+.save-payment{
+    width:100%;
+    padding:10px;
+    background:#f2d35c;
+    border:none;
+    border-radius:6px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ===== Vehicle Details Popup ===== */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+.grid input{
+    width:100%;
+    padding:7px;
+    border-radius:6px;
+    border:1px solid #aaa;
+}
+.docs{
+    margin-top:10px;
+}
+.doc-row{
+    background:#fff;
+    padding:8px;
+    margin-top:6px;
+    border-radius:6px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.doc-actions{
+	margin: 10px;	
+}
+
+
+.doc-actions button{
+    border:none;
+    padding:4px 10px;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:12px;
+}
+.view-doc{ background:#8bc34a; }
+.upload-doc{ background:#cddc39; }
+
+.popup-actions{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+}
+.popup-actions button{
+    border:none;
+    padding:8px 18px;
+    border-radius:6px;
+    color:#fff;
+    cursor:pointer;
+}
+.cancel{ background:red; }
+.save{ background:green; }
+.edit{ background:#0d6efd; }
+
+
+.docs {
+    margin-top: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* Optional clean scrollbar */
+.docs::-webkit-scrollbar {
+    width: 6px;
+}
+.docs::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+}

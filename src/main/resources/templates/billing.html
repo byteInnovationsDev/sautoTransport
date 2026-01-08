@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Billing Dashboard</title>
+
+    <link rel="stylesheet" href="/css/billing.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+
+     <!-- Sidebar -->
+ <aside class="sidebar">
+  <div class="logo-box">
+    <img src="/images/logo.png" alt="Logo">
+  </div>
+
+  <a href="home" class="nav ">
+    <i class="fa-solid fa-house"></i>
+    <span>Dashboard</span>
+  </a>
+
+  <a href="payments" class="nav">
+    <i class="fa-solid fa-indian-rupee-sign"></i>
+    <span>Payment</span>
+  </a>
+
+  <a href="billing" class="nav active">
+    <i class="fa-solid fa-file-invoice"></i>
+    <span>Billing</span>
+  </a>
+</aside>
+
+    <!-- Main -->
+    <main class="main">
+
+        <!-- Vehicle List -->
+        <section class="vehicle-section">
+            <h2>SELECT THE VEHICLE</h2>
+			<div class="search-box">
+			    <i class="fa fa-search"></i>
+			    <input type="text" placeholder="Search vehicle/Driver" id="searchVehicle">
+			  </div>
+            <div class="vehicle-list vehicle-card" >
+
+                <div class="vehicle-item selected" th:each="v, stat : ${vehiclesList}"
+		     th:data-vehicleno="${v.vehicleNo}"
+		     th:data-driver="${v.driverName}">
+                    <input type="radio" class="billingDtl" name="billingVehicle">
+                    <i class="fa fa-user-circle"></i>
+                    <div>
+                        <strong th:text="${v.vehicleNo}" ></strong>
+                        <p th:text="${v.driverName}"></p>
+                    </div>
+                </div>
+               
+            </div>
+             <div id="no-records" style="display:none; text-align:center; padding:30px;">
+			    <p style="font-size: 20px;">No records found</p>
+			</div>
+        </section>
+
+        <!-- Billing Column -->
+        <section class="billing-section">
+
+            <div class="billing-header">BILLING</div>
+
+            <div class="billing-card">
+
+                <h3>INVOICE</h3>
+                <div class="dashed"></div>
+
+                <div class="invoice-row">
+                    <div>
+                        <strong id="inv-veh">TN00XX0000</strong>
+                        <p id="inv-dri">Driver: ABCD</p>
+                    </div>
+                    <input type="number" id="inv-amt" placeholder="Enter Amount">
+                </div>
+
+                <div class="dashed"></div>
+
+                <div class="date-row">
+				    <i class="fa-solid fa-calendar-days"></i>
+				
+				    <input type="date" title="Select Date" id="inv-date">
+				</div>
+
+
+                <button class="generate-btn">GENERATE INVOICE</button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/billing.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+	
+</body>
+</html>
+

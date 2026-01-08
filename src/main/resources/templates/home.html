@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vehicle Dashboard</title>
+  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+ <aside class="sidebar">
+  <div class="logo-box">
+    <img src="/images/logo.png" alt="Logo">
+  </div>
+
+  <button class="nav active" th:onclick="|window.location='@{/home}'|">
+    <i class="fa-solid fa-house"></i>
+    <span>Dashboard</span>
+  </button>
+
+  <button class="nav" th:onclick="|window.location='@{/payments}'|">
+    <i class="fa-solid fa-indian-rupee-sign"></i>
+    <span>Payment</span>
+    
+  </button>
+
+  <button class="nav" th:onclick="|window.location='@{/billing}'|">
+    <i class="fa-solid fa-file-invoice"></i>
+    <span>Billing</span>
+  </button>
+</aside>
+
+
+  <!-- Main -->
+  <main class="content">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="welcome">
+  <h2>
+    <i class="fa fa-user-circle"></i>
+    Hello! <span th:text="${userId}" style="font-size: 25px;"></span>
+  </h2>
+  <p>Welcome Back... Have a Great Day!</p>
+</div>
+
+    </div>
+
+    <!-- Actions -->
+    
+    <div class="top-actions">
+   <button class="btn yellow" id="addVehicle" onclick="openModal()">ADD NEW VEHICLE</button>
+
+  <div class="search-box">
+    <i class="fa fa-search"></i>
+    <input type="text" placeholder="Search vehicle/Driver" id="searchVehicle">
+  </div>
+</div>
+
+
+    <!-- Cards -->
+    <div class="cards">
+
+      <div class="card">
+  <h3>Vehicle Details</h3>
+
+  <div class="card-content">
+    <div  th:each="v, stat : ${vehicles}"
+     class="vehicle-card vehicle"
+     th:data-vehicleno="${v.vehicleNo}"
+     th:data-driver="${v.driverName}"
+
+     th:data-fc-exp="${v.fcExpiryDate}"
+     th:data-rc-exp="${v.rcExpiryDate}"
+     th:data-noc-exp="${v.nocExpiryDate}"
+     th:data-license-exp="${v.licenseExpiryDate}"
+     th:data-puc-exp="${v.pucExpiryDate}"
+     th:data-insurance-exp="${v.insuranceExpiryDate}">
+
+    <b th:text="${v.vehicleNo}"></b><br>
+    <small th:text="${v.driverName}"></small>
+	</div>
+</div>
+
+<!--         <button class="btn black">VIEW MORE</button> -->
+      </div>
+
+      <div class="card">
+  <h3>Upcoming Reminders</h3>
+
+  <div class="card-content">
+  	<div id="reminderContainer"></div>
+  </div>
+</div>
+
+
+    </div>
+  </main>
+</div>
+
+<!-- Modal -->
+<!-- Add Vehicle Modal -->
+<div id="modal" class="editContainer modal" hidden>
+  <div class="vehicle-modal">
+
+    <!-- Header -->
+    <div class="modal-header">
+      <span class="back" id="closeVehicleDtls">◀</span>
+      <h3 id="heading">ADD NEW VEHICLE</h3>
+    </div>
+
+    <!-- Form -->
+    <div class="modal-body">
+
+      <!-- Row 1 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Enter Vehicle No.</label>
+          <input type="text" id="vehicleNo" placeholder="TN00XX0000">
+          <div class="error-text"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select id="category">
+            <option value="" disabled selected>Select Category</option>
+            <option value="Petrol">Petrol</option>
+            <option value="EV">EV</option>
+            <option value="2 Stroke">2 Stroke</option>
+            <option value="CNG">CNG</option>
+            <option value="LPG">LPG</option>
+          </select>
+          <div class="error-text"></div>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Enter Driver Name</label>
+          <input type="text" id="driverName" placeholder="Driver Name">
+          <div class="error-text"></div>
+        </div>
+
+        <div class="form-group">
+          <label>Enter Driver Phone No.</label>
+          <input type="text" id="driverPhoneNo" placeholder="9876543210">
+          <div class="error-text"></div>
+        </div>
+      </div>
+
+      <!-- Documents -->
+      <h4 class="section-title">Upload Documents</h4>
+
+      <div class="doc-grid">
+
+        <!-- FC -->
+        <div class="doc-card">
+          <div class="doc-title">Vehicle FC</div>
+          <div class="doc-actions">
+            <button type="button" class="view-btn view" data-type="fc">View</button>
+            <button type="button" class="upload-btn upload" id="uploadFcBtn">Upload</button>
+            <input type="file" id="uploadFcFile" style="display:none">
+            <button type="button" class="download-btn" data-type="fc">Download</button>
+          </div>
+
+          <div class="error-text file-error"></div>
+
+          <p id="fcFileName" style="margin:5px 0; color:green;"></p>
+
+          <label>Enter Expiry Date</label>
+          <input type="date" id="fcExpdt">
+          <div class="error-text date-error"></div>
+        </div>
+
+        <!-- NOC -->
+        <div class="doc-card">
+          <div class="doc-title">Vehicle NOC</div>
+          <div class="doc-actions">
+            <button type="button" class="view-btn view" data-type="noc">View</button>
+            <button type="button" class="upload-btn upload" id="uploadNocBtn">Upload</button>
+            <input type="file" id="uploadNocFile" style="display:none">
+            <button type="button" class="download-btn" data-type="noc">Download</button>
+          </div>
+
+          <div class="error-text file-error"></div>
+
+          <p id="nocFileName" style="margin:5px 0; color:green;"></p>
+
+          <label>Enter Expiry Date</label>
+          <input type="date" id="nocExpdt">
+          <div class="error-text date-error"></div>
+        </div>
+
+        <!-- RC -->
+        <div class="doc-card">
+          <div class="doc-title">Vehicle RC</div>
+          <div class="doc-actions">
+            <button type="button" class="view-btn view" data-type=rc>View</button>
+            <button type="button" class="upload-btn upload" id="uploadRcBtn">Upload</button>
+            <input type="file" id="uploadRcFile" style="display:none">
+            <button type="button" class="download-btn" data-type="rc">Download</button>
+          </div>
+
+          <div class="error-text file-error"></div>
+
+          <p id="rcFileName" style="margin:5px 0; color:green;"></p>
+
+          <label>Enter Expiry Date</label>
+          <input type="date" id="rcExpdt">
+          <div class="error-text date-error"></div>
+        </div>
+
+        <!-- DL -->
+        <div class="doc-card">
+          <div class="doc-title">Driver Licence</div>
+          <div class="doc-actions">
+            <button type="button" class="view-btn view" data-type="license">View</button>
+            <button type="button" class="upload-btn upload" id="uploadLicenseBtn">Upload</button>
+            <input type="file" id="uploadLicenseFile" style="display:none">
+            <button type="button" class="download-btn" data-type="license">Download</button>
+          </div>
+
+          <div class="error-text file-error"></div>
+
+          <p id="licenseFileName" style="margin:5px 0; color:green;"></p>
+
+          <label>Enter Expiry Date</label>
+          <input type="date" id="licenseExpdt">
+          <div class="error-text date-error"></div>
+        </div>
+		
+		
+		<div class="doc-card">
+          <div class="doc-title">Driver Aadhar Card</div>
+          <div class="doc-actions">
+            <button type="button" class="view-btn view" data-type="aadhar">View</button>
+            <button type="button" class="upload-btn upload" id="uploadAadharBtn">Upload</button>
+            <input type="file" id="uploadAadharFile" style="display:none">
+            <button type="button" class="download-btn" data-type="aadhar">Download</button>
+          </div>
+
+          <div class="error-text file-error"></div>
+
+          <p id="aadharFileName" style="margin:5px 0; color:green;"></p>
+
+        </div>
+        
+        <div class="doc-card">
+          <div class="doc-title">Vehicle PUC</div>
+          <div class="doc-actions">
+            <button type="button" class="view-btn view" data-type="puc">View</button>
+            <button type="button" class="upload-btn upload" id="uploadPucBtn">Upload</button>
+            <input type="file" id="uploadPucFile" style="display:none">
+            <button type="button" class="download-btn" data-type="puc">Download</button>
+          </div>
+
+          <div class="error-text file-error"></div>
+
+          <p id="pucFileName" style="margin:5px 0; color:green;"></p>
+
+          <label>Enter Expiry Date</label>
+          <input type="date" id="pucExpdt">
+          <div class="error-text date-error"></div>
+        </div>
+        
+        
+        
+        <div class="doc-card">
+          <div class="doc-title">Vehicle Insurance</div>
+          <div class="doc-actions">
+            <button type="button" class="view-btn view" data-type="insurance">View</button>
+            <button type="button" class="upload-btn upload" id="uploadInsuranceBtn">Upload</button>
+            <input type="file" id="uploadInsuranceFile" style="display:none">
+            <button type="button" class="download-btn" data-type="insurance">Download</button>
+          </div>
+
+          <div class="error-text file-error"></div>
+
+          <p id="insuranceFileName" style="margin:5px 0; color:green;"></p>
+
+          <label>Enter Expiry Date</label>
+          <input type="date" id="insuranceExpdt">
+          <div class="error-text date-error"></div>
+        </div>
+        
+		
+      </div>
+
+      <!-- Save -->
+      <div class="save-wrap">
+        <button id="saveVehicle" class="save-btn">SAVE</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/js/home.js"></script>
+</body>
+</html>
