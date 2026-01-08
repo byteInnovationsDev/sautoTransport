@@ -42,7 +42,7 @@ public class Maincontoller {
 	@GetMapping("/")
 	public String main() 
 	{
-		return "login";
+		return "index";
 	}
 	
 	@PostMapping("/login")
