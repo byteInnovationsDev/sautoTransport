@@ -102,3 +102,22 @@ $(document).on("click", ".download-btn", function () {
         "/vehicle/" + vehicleNo + "/document/" + type + "/download";
 });
 
+$("#searchVehicle").on("input", function () {
+
+    let searchText = $(this).val().toLowerCase().trim();
+
+    $(".vehicle-card").each(function () {
+
+        let vehicleNo = $(this).data("vehicleno").toLowerCase();
+        let driverName = $(this).data("driver").toLowerCase();
+
+        if (
+            vehicleNo.includes(searchText) ||
+            driverName.includes(searchText)
+        ) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+});

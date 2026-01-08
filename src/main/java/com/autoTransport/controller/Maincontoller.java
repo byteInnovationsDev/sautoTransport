@@ -207,6 +207,9 @@ public class Maincontoller {
 	    dto.setNocFileName(v.getNocFileName());
 	    dto.setRcFileName(v.getRcFileName());
 	    dto.setLicenseFileName(v.getLicenseFileName());
+	    dto.setAadharFileName(v.getAadharFileName());
+	    dto.setPucFileName(v.getPucFileName());
+	    dto.setInsuranceFileName(v.getInsuranceFileName());
 
 	    return dto;
 	}

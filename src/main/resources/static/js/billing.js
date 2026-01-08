@@ -10,7 +10,7 @@ $('.generate-btn').on('click', function () {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    const card = $('.vehicle-card.selected');
+    const card = $('.vehicle-item.selected');
     if (!card.length) {
         alert('Please select a vehicle');
         return;
@@ -21,7 +21,7 @@ $('.generate-btn').on('click', function () {
 	const rawDate = $('#inv-date').val();
 	const [y, m, d] = rawDate.split('-');
 	const date = `${d}-${m}-${y}`;
-    const amount = Number(card.data('payamt')).toFixed(2);
+    const amount = Number($('#inv-amt').val()).toFixed(2);
 
     doc.setFont('helvetica', 'normal');
 
@@ -70,8 +70,8 @@ $('.generate-btn').on('click', function () {
 
 
 $(document).on('change', '.billingDtl', function () {
-    $('.vehicle-card').removeClass('selected');
-    $(this).closest('.vehicle-card').addClass('selected');
+    $('.vehicle-item').removeClass('selected');
+    $(this).closest('.vehicle-item').addClass('selected');
 });	
 
 $('.vehicle-item').on('click', function () {

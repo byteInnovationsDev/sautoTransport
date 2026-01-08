@@ -47,7 +47,7 @@
 			  </div>
             <div class="vehicle-list vehicle-card" >
 
-                <div class="vehicle-item selected" th:each="v, stat : ${vehiclesList}"
+                <div class="vehicle-item" th:each="v, stat : ${vehiclesList}"
 		     th:data-vehicleno="${v.vehicleNo}"
 		     th:data-driver="${v.driverName}">
                     <input type="radio" class="billingDtl" name="billingVehicle">

@@ -268,3 +268,24 @@ body{
     background: #bbb;
     border-radius: 10px;
 }
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 10px 16px;
+  border-radius: 30px;
+  width: 260px;
+  margin-bottom: 10px;
+}
+
+.search-box i {
+  color: #999;
+  margin-right: 8px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+}

@@ -128,6 +128,8 @@ $(document).on("click","#addVehicle", function(){
 	$("#nocExpdt").val(''),
 	$("#rcExpdt").val(''),
 	$("#licenseExpdt").val('')
+	$("#insuranceExpdt").val('')
+	$("#pucExpdt").val('')
 	$("#fcFileName").text("");
     $("#nocFileName").text("");
     $("#rcFileName").text("");

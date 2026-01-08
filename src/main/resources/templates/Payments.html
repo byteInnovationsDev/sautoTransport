@@ -33,7 +33,10 @@
 
 		<div class="content">
 			<div class="header">LIST OF VEHICLE</div>
-
+			<div class="search-box">
+			    <i class="fa fa-search"></i>
+			    <input type="text" placeholder="Search vehicle/Driver" id="searchVehicle">
+			  </div>
 			<div th:each="v, stat : ${vehicles}" class="vehicle-card vehicle"
 				th:data-vehicleno="${v.vehicleNo}" th:data-driver="${v.driverName}"
 				th:data-fc-exp="${v.fcExpiryDate}"
