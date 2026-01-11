@@ -17,29 +17,52 @@ $(document).on("click","#viewDtls", function(){
 
 	    let vehicleNo = $(this).closest(".vehicle-card").data("vehicleno");
 
-	    $.ajax({
-	        url: "/findVehicle",
-	        type: "GET",
-	        data: { vehicleNo: vehicleNo },
-	        success: function (vehicle) {
+		$.ajax({
+		    url: "/findVehicle",
+		    type: "GET",
+		    data: { vehicleNo: vehicleNo },
+		    success: function (vehicle) {
 
-	            $("#vehicleNo").val(vehicle.vehicleNo);
-	            $("#category").val(vehicle.category);
-	            $("#driverName").val(vehicle.driverName);
-	            $("#driverPhoneNo").val(vehicle.driverPhoneNo);
+		        $("#vehicleNo").val(vehicle.vehicleNo);
+		        $("#category").val(vehicle.category);
+		        $("#driverName").val(vehicle.driverName);
+		        $("#driverPhoneNo").val(vehicle.driverPhoneNo);
 
-	            $("#fcExpdt").val(vehicle.fcExpiryDate);
-	            $("#nocExpdt").val(vehicle.nocExpiryDate);
-	            $("#rcExpdt").val(vehicle.rcExpiryDate);
-	            $("#licenseExpdt").val(vehicle.licenseExpiryDate);
-	            $("#pucExpdt").val(vehicle.pucExpiryDate);
-	            $("#insuranceExpdt").val(vehicle.insuranceExpiryDate);
+		        $("#fcExpdt").val(vehicle.fcExpiryDate);
+		        $("#rcExpdt").val(vehicle.rcExpiryDate);
+		        $("#insuranceExpdt").val(vehicle.insuranceExpiryDate);
+		        $("#pucExpdt").val(vehicle.pucExpiryDate);
 
-	        },
-	        error: function () {
-	            alert("Error fetching vehicle");
-	        }
-	    });
+		        // ================= OPTIONAL DOCUMENTS =================
+
+		        // NOC
+		        if (vehicle.nocExpiryDate) {
+		            $("#nocExpdt").val(vehicle.nocExpiryDate);
+		            $("#nocRow").show();
+		        } else {
+		            $("#nocRow").hide();
+		        }
+
+		        // Aadhar Card
+		        if (vehicle.aadharFileName || vehicle.aadharExpiryDate) {
+		            $("#aadharRow").show();
+		        } else {
+		            $("#aadharRow").hide();
+		        }
+
+		        // Driver License
+		        if (vehicle.licenseExpiryDate) {
+		            $("#licenseExpdt").val(vehicle.licenseExpiryDate);
+		            $("#licenseRow").show();
+		        } else {
+		            $("#licenseRow").hide();
+		        }
+		    },
+		    error: function () {
+		        alert("Error fetching vehicle");
+		    }
+		});
+
 	
 });
 

@@ -129,21 +129,21 @@ body {
 .billing-card {
     background: #fff;
     border-radius: 20px;
-    padding: 25px;
+    padding: 15px;
     border: 2px solid #ccc;
-    height: 325px;
-    margin-top: 13%;
+    height: 295px;
+    margin-top: 5%;
 }
 
-.billing-card h3 {
+.billing-card h4 {
     text-align: center;
     letter-spacing: 4px;
-    margin-bottom: 10px;
+    margin-bottom: -14px;
 }
 
 .dashed {
     border-top: 2px dashed #000;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 .invoice-row {
@@ -170,7 +170,7 @@ body {
 
 .generate-btn {
     width: 100%;
-    padding: 12px;
+    padding: 9px;
     background: #ffe066;
     border: 2px solid #000;
     border-radius: 12px;
@@ -244,4 +244,20 @@ body {
     padding: 10px;
     min-height: 520px;
     overflow-y: auto;
+}
+
+.reportBtn {
+    width: 100%;
+    padding: 12px;
+    background: #ffe066;
+    border: 2px solid #000;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+strong{
+	font-size: bold;
+}
+p{
+	font-size: medium;
 }

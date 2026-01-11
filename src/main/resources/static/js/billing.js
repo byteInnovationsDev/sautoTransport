@@ -99,3 +99,21 @@ $("#searchVehicle").on("input", function () {
 	const visibleCount = $(".vehicle-card:visible").length;
 	$("#no-records").toggle(visibleCount === 0);
 });
+
+$('.reportBtn').on('click', function () {
+
+    let fromDate = $('#rptFrDt').val();
+    let toDate = $('#rptToDt').val();
+	
+	if(!fromDate){
+		alert("select From Date!");
+		return;
+	}else if(!toDate){
+		alert("select To Date!")
+		return;
+	}
+
+    window.location.href =
+        "/report?fromDate=" + fromDate + "&toDate=" + toDate;
+});
+

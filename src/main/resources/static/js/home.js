@@ -171,18 +171,13 @@ const fieldConfig = [
     { id: "#driverPhoneNo", msg: "Driver phone number is required" },
 
     { id: "#fcExpdt", msg: "FC expiry date is required" },
-    { id: "#nocExpdt", msg: "NOC expiry date is required" },
     { id: "#rcExpdt", msg: "RC expiry date is required" },
-    { id: "#licenseExpdt", msg: "License expiry date is required" },
     { id: "#pucExpdt", msg: "PUC expiry date is required" },
     { id: "#insuranceExpdt", msg: "Insurance expiry date is required" },
 
     /* FILE UPLOADS (MANDATORY) */
     { id: "#uploadFcFile", msg: "FC document is required", type: "file" },
-    { id: "#uploadNocFile", msg: "NOC document is required", type: "file" },
     { id: "#uploadRcFile", msg: "RC document is required", type: "file" },
-    { id: "#uploadLicenseFile", msg: "License document is required", type: "file" },
-    { id: "#aadharFileName", msg: "Aadhar Card is required", type: "file" },
     { id: "#pucFileName", msg: "PUC is required", type: "file" },
     { id: "#insuranceFileName", msg: "Insurance is required", type: "file" }
 ];

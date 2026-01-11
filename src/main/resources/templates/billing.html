@@ -69,9 +69,9 @@
 
             <div class="billing-header">BILLING</div>
 
-            <div class="billing-card">
+           <!--  <div class="billing-card">
 
-                <h3>INVOICE</h3>
+                <h4>INVOICE</h4>
                 <div class="dashed"></div>
 
                 <div class="invoice-row">
@@ -93,6 +93,54 @@
 
                 <button class="generate-btn">GENERATE INVOICE</button>
 
+            </div> -->
+            
+            <div class="billing-card" style="
+    height: 355px;
+">
+
+                <h4>INVOICE</h4>
+                <div class="dashed"></div>
+
+                <div class="invoice-row">
+                    <div>
+                        <strong id="inv-veh">TN00XX0000</strong>
+                        <p id="inv-dri">Driver: ABCD</p>
+                    </div>
+                    <input type="number" id="inv-amt" placeholder="Enter Amount">
+                </div>
+
+                <div class="dashed"></div>
+
+                <div class="date-row">
+				   <strong >Billing Date</strong> <input type="date" title="Select Date" id="inv-date">
+					
+				</div>
+
+
+                <div class="date-row">
+				   <strong style="margin-right: 10px;">From Date</strong> <input type="date" id="rptFrDt">
+				</div>
+				<div class="date-row">
+				
+				    <strong style="margin-right: 28px;">To Date</strong> <input type="date" id="rptFrDt">
+				</div>
+				<button class="generate-btn">GENERATE INVOICE</button>
+
+            </div>
+            
+            <div class="billing-card" style="margin-top: 10px; height:240px">
+
+                <H4>REPORT</H4>
+                <div class="dashed"></div>
+                <div class="date-row">
+				    <strong>From Date</strong> <input type="date" id="rptFrDt">
+				</div>
+                <div class="date-row">
+				    <strong style="margin-right: 16px;">To Date</strong> <input type="date" id="rptToDt">
+				</div>
+				
+				 <button class="reportBtn">GENERATE REPORT</button>
             </div>
 
         </section>

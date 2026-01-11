@@ -25,6 +25,7 @@ import com.autoTransport.dto.PaymentDTO;
 import com.autoTransport.dto.VehicleDTO;
 import com.autoTransport.dto.VehicleViewDTO;
 import com.autoTransport.manager.MainManager;
+import com.autoTransport.manager.ReportManager;
 import com.autoTransport.model.Payment;
 import com.autoTransport.model.Vehicle;
 import com.autoTransport.repository.PaymentRepository;
@@ -89,11 +90,6 @@ public class Maincontoller {
 		return "billing";
 	}
 	
-	@GetMapping("report")
-	public String reports() 
-	{
-		return "Report";
-	}
 	
 	@PostMapping(
 		    value = "/saveVehicle",
