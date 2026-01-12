@@ -77,7 +77,7 @@ public class Maincontoller {
 			
 			List<Vehicle> vehicles = manager.getVehicles();
 			model.addAttribute("vehicles", vehicles);
-			return "payments";
+			return "Payments";
 		}
 	
 	@GetMapping("/billing")
