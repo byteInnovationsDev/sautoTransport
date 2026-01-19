@@ -45,7 +45,7 @@ $('.generate-btn').on('click', function () {
 		const from = formatDateDDMMYYYY(rawFrom);
 		const to   = formatDateDDMMYYYY(rawTo);
 		const invoiceDate = formatDateDDMMYYYY(rawInv);
-    	const invoiceNo = "012345100";
+    	const invoiceNo = "012345101";
 
     /* =========================
        LOGO
