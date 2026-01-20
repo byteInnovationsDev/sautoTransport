@@ -366,6 +366,16 @@ public class Maincontoller {
 
 	        return "success";
 	    }
+	    
+	    @PostMapping("/deleteVehicle")
+		@ResponseBody
+		public String deleteVehicle(@RequestParam String vehicleNo) {
+	    	
+	    	boolean isDeleted =  manager.deleteVehicle(vehicleNo);
+	    	
+	    	return isDeleted ? "success" : "invalid";
+	    }
+	    
 
 
 }

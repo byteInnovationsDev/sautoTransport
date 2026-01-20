@@ -113,4 +113,17 @@ public class MainManagerImpl implements MainManager{
 		return payRepo.findAll();
 	}
 
+	@Override
+	public boolean deleteVehicle(String vehicleNo) {
+		
+		 Optional<Vehicle> vehicle = vehicleRepo.findByVehicleNo(vehicleNo);
+
+		    if (vehicle.isPresent()) {
+		        vehicleRepo.delete(vehicle.get());
+		        return true;
+		    }
+
+		    return false;
+	}
+
 }

@@ -19,7 +19,7 @@
 
 		<aside class="sidebar">
 			<div class="logo-box">
-				<img src="/images/logo.png" alt="Logo">
+				<img src="/images/login_v2.png" alt="Logo">
 			</div>
 
 			<a href="home" class="nav"> <i class="fa-solid fa-house"></i>
@@ -52,8 +52,9 @@
 				</div>
 				<div class="actions">
 					<button th:data-vehicleno="${v.vehicleNo}"
-						th:data-driver="${v.driverName}" id="paymentDtls">Payment</button>
-					<button id="viewDtls">View</button>
+						th:data-driver="${v.driverName}" class="paymentDtls">Payment</button>
+					<button class="viewDtls">View</button>
+					<button th:data-vehicleno="${v.vehicleNo}" class="deleteDtls" style="background-color: red; font-weight: bold;">Delete</button>
 				</div>
 			</div>
 

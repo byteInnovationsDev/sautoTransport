@@ -16,5 +16,6 @@ public interface MainManager {
 	Vehicle findVehicleByVehicleNo(String vehicleNo);
 
 	List<Payment> getPaidVehicles();
-
+	
+	boolean deleteVehicle(String vehicleNo);
 }

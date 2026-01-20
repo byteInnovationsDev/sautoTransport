@@ -1,7 +1,7 @@
 let vehicleNo = null;
 let driverName = null;
 
-$(document).on("click","#viewDtls", function(){
+$(document).on("click",".viewDtls", function(){
 	$("#viewModal").show();
 	$("#heading").text("VEHICLE DETAILS");
 	$('.modal-box').css({
@@ -66,7 +66,7 @@ $(document).on("click","#viewDtls", function(){
 	
 });
 
-$(document).on("click","#paymentDtls", function(){
+$(document).on('click', '.paymentDtls', function () {
 	$("#paymentModal").show();
 	$('.modal-box').css({
 	    background: '#e6e6e6',
@@ -143,4 +143,34 @@ $("#searchVehicle").on("input", function () {
             $(this).hide();
         }
     });
+});
+
+$(document).on('click', '.deleteDtls', function () {
+	
+	let vehicleNum = $(this).data('vehicleno');
+	
+	if (confirm("Are you sure you want to Delete the Vehicle"+ vehicleNum +"?")) {
+		$.ajax({
+			        url: "/deleteVehicle",
+			        type: "POST",
+			        data: {
+			            vehicleNo: vehicleNum
+			        },
+			        success: function (data) {
+						
+						if(data === "success"){
+			            	alert("Vehicle Deleted successfully");
+							location.reload();
+						}else{
+							alert("Error Deleting the Vehicle");
+						}
+			        },
+			        error: function () {
+			            alert("Error deleting the Vehicle");
+			        }
+			    });
+	} else {
+	    return false;
+	}
+	
 });
