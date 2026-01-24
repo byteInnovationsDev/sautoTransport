@@ -60,12 +60,15 @@ public class Maincontoller {
 	    return "success";
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+	    session.invalidate();
+	    return "redirect:/";
+	}
+	
 	@GetMapping("/home")
 	public String home(HttpSession session, Model model) {
-
-		/*
-		 * if (session.getAttribute("User") == null) { return "redirect:/"; }
-		 */
+		 
 	    List<Vehicle> vehicles = manager.getVehicles();
 	    model.addAttribute("vehicles", vehicles);
 	    model.addAttribute("userId", session.getAttribute("User"));

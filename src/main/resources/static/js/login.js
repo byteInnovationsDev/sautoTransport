@@ -16,7 +16,8 @@ $(document).on("click", "#loginBtn", function () {
                 alert("Invalid username or password");
             
 				} else if (response === "success") {
-                window.location.href = "/home";
+					sessionStorage.setItem("AUTH", "true");
+	                window.location.href = "/home";
             }
         },
         error: function () {

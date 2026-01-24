@@ -1,5 +1,33 @@
-$(document).ready(function () {
+if (!sessionStorage.getItem("AUTH")) {
+	    window.location.href = "/logout";
+	  }
 
+let idleTime = 0;
+  const MAX_IDLE_MINUTES = 60;
+
+  function resetIdleTimer() {
+    idleTime = 0;
+  }
+
+  // Events that count as activity
+  window.onload = resetIdleTimer;
+  document.onmousemove = resetIdleTimer;
+  document.onkeydown = resetIdleTimer;
+  document.onclick = resetIdleTimer;
+  document.onscroll = resetIdleTimer;
+
+  // Check every minute
+  setInterval(() => {
+    idleTime++;
+    if (idleTime >= MAX_IDLE_MINUTES) {
+      window.location.href = "/logout";
+    }
+  }, 60000);
+
+
+$(document).ready(function () {
+	
+	
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -272,6 +300,8 @@ function validateForm() {
 
 $(document).on("click", "#saveVehicle", function () {
 	
+	$('#saveVehicle').prop("disabled", true);
+	
 	fieldConfig.forEach(f => {
 	        if (!$(f.id).next(".error-text").length) {
 	            $(f.id).after('<span class="error-text"></span>');
@@ -327,9 +357,11 @@ $(document).on("click", "#saveVehicle", function () {
 	            alert("Saved successfully");
 				$('.editContainer').hide();
 				window.location.replace("/home");
+				$('#saveVehicle').prop("disabled", false);
         },
         error: function () {
-            alert("Error saving vehicle");
+            alert("Error saving vehicle Try Again");
+			$('#saveVehicle').prop("disabled", false);
         }
     });
 });
@@ -379,6 +411,7 @@ $(document).on("click", ".vehicle-card", function () {
 
             $(".editContainer").show();
             $("#heading").text("EDIT VEHICLE DETAILS");
+			$('#saveVehicle').prop("disabled", false);
         },
         error: function () {
             alert("Error fetching vehicle");

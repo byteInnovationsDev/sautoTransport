@@ -1,3 +1,29 @@
+if (!sessionStorage.getItem("AUTH")) {
+    window.location.href = "/logout";
+  }
+  
+  let idleTime = 0;
+    const MAX_IDLE_MINUTES = 60;
+
+    function resetIdleTimer() {
+      idleTime = 0;
+    }
+
+    // Events that count as activity
+    window.onload = resetIdleTimer;
+    document.onmousemove = resetIdleTimer;
+    document.onkeydown = resetIdleTimer;
+    document.onclick = resetIdleTimer;
+    document.onscroll = resetIdleTimer;
+
+    // Check every minute
+    setInterval(() => {
+      idleTime++;
+      if (idleTime >= MAX_IDLE_MINUTES) {
+        window.location.href = "/logout";
+      }
+    }, 60000);
+	
 let vehicleNo = null;
 let driverName = null;
 
