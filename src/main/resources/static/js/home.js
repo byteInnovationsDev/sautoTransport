@@ -41,7 +41,7 @@ $(document).ready(function () {
         const docs = [
             { type: "FC", date: $(this).data("fc-exp"), key: vehicleNo },
             { type: "RC", date: $(this).data("rc-exp"), key: vehicleNo },
-            { type: "NOC", date: $(this).data("noc-exp"), key: vehicleNo },
+            { type: "AGREEMENT", date: $(this).data("noc-exp"), key: vehicleNo },
             { type: "PUC", date: $(this).data("puc-exp"), key: vehicleNo },
             { type: "INSURANCE", date: $(this).data("insurance-exp"), key: vehicleNo },
             { type: "LICENSE", date: $(this).data("license-exp"), key: driverName }
