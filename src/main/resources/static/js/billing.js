@@ -93,11 +93,19 @@ $('.generate-btn').on('click', function () {
     /* =========================
        ADDRESS (RIGHT)
     ========================== */
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text("19/1 , Sanjay Gandhi Street,", 140, 15);
-    doc.text("MGR Nagar,", 140, 20);
-    doc.text("Chennai 78", 140, 25);
+	doc.setFont("helvetica", "normal");
+	doc.setFontSize(10);
+
+	const startX = 195;  
+	let startY1 = 15;
+	const lineGap = 5;
+
+	doc.text("19/1, Sanjay Gandhi Street,", startX, startY1, { align: "right" });
+	doc.text("MGR Nagar,", startX, startY1 + lineGap, { align: "right" });
+	doc.text("Chennai - 78", startX, startY1 + lineGap * 2, { align: "right" });
+	doc.text("Contact : 9551441611,", startX, startY1 + lineGap * 3, { align: "right" });
+	doc.text("8015681189", startX, startY1 + lineGap * 4, { align: "right" });
+
 
     /* =========================
        HORIZONTAL LINE
@@ -117,7 +125,7 @@ $('.generate-btn').on('click', function () {
     ========================== */
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
-    doc.text(`DATE : ${invoiceDate}`, 140, 52);
+    doc.text(`DATE : ${invoiceDate}`, 160, 52);
 //    doc.text(`INVOICE NUMBER : ${invoiceNo}`, 140, 60);
 
     /* =========================
