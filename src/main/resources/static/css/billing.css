@@ -84,7 +84,8 @@ body {
     background: #fff;
     border-radius: 10px;
     padding: 10px;
-    min-height: 520px;
+    max-height: 555px;
+    min-height: 555px;
     overflow-y: auto;
 }
 

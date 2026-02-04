@@ -24,6 +24,15 @@ let idleTime = 0;
     }
   }, 60000);
 
+  const savedFileMap = {
+    fc: false,
+    noc: false,
+    rc: false,
+    license: false,
+    aadhar: false,
+    puc: false,
+    insurance: false
+  };
 
 $(document).ready(function () {
 	
@@ -169,7 +178,9 @@ $(document).on("click","#addVehicle", function(){
 	$(".editContainer").show();
 	$("#heading").text("ADD NEW VEHICLE");
 	$(".error-text").text("");
-	
+	$(".view-btn").prop("disabled", false);
+	Object.keys(savedFileMap).forEach(k => savedFileMap[k] = false);
+
 });
 
 $("#searchVehicle").on("input", function () {
@@ -316,6 +327,7 @@ $(document).on("click", "#saveVehicle", function () {
 	
 	
 	if (!validateForm()) {
+		$('#saveVehicle').prop("disabled", false);
 	       return;
 	   }
 	
@@ -366,16 +378,18 @@ $(document).on("click", "#saveVehicle", function () {
     });
 });
 
+
 $(document).on("click", ".vehicle-card", function () {
     let vehicleNo = $(this).data("vehicleno");
-	$('.download-btn').show();
-	$(".error-text").text("");
+    $(".error-text").text("");
+
     $.ajax({
         url: "/findVehicle",
         type: "GET",
         data: { vehicleNo: vehicleNo },
         success: function (vehicle) {
 
+            // Fill form values
             $("#vehicleNo").val(vehicle.vehicleNo);
             $("#category").val(vehicle.category);
             $("#driverName").val(vehicle.driverName);
@@ -388,30 +402,36 @@ $(document).on("click", ".vehicle-card", function () {
             $("#pucExpdt").val(vehicle.pucExpiryDate);
             $("#insuranceExpdt").val(vehicle.insuranceExpiryDate);
 
+            // Fill file names
             $("#fcFileName").text(vehicle.fcFileName || "");
-            toggleButtons("fc", vehicle.hasFc);
-
             $("#nocFileName").text(vehicle.nocFileName || "");
-            toggleButtons("noc", vehicle.hasNoc);
-
             $("#rcFileName").text(vehicle.rcFileName || "");
-            toggleButtons("rc", vehicle.hasRc);
-
             $("#licenseFileName").text(vehicle.licenseFileName || "");
+            $("#insuranceFileName").text(vehicle.insuranceFileName || "");
+            $("#aadharFileName").text(vehicle.aadharFileName || "");
+            $("#pucFileName").text(vehicle.pucFileName || "");
+
+            // Toggle buttons
+            toggleButtons("fc", vehicle.hasFc);
+            toggleButtons("noc", vehicle.hasNoc);
+            toggleButtons("rc", vehicle.hasRc);
             toggleButtons("license", vehicle.hasLicense);
-            
-			$("#insuranceFileName").text(vehicle.insuranceFileName || "");
             toggleButtons("insurance", vehicle.hasInsurance);
-           
-			 $("#aadharFileName").text(vehicle.aadharFileName || "");
             toggleButtons("aadhar", vehicle.hasAadhar);
-           
-			 $("#pucFileName").text(vehicle.pucFileName || "");
             toggleButtons("puc", vehicle.hasPuc);
+
+            // Update savedFileMap
+            savedFileMap.fc = vehicle.hasFc;
+            savedFileMap.noc = vehicle.hasNoc;
+            savedFileMap.rc = vehicle.hasRc;
+            savedFileMap.license = vehicle.hasLicense;
+            savedFileMap.aadhar = vehicle.hasAadhar;
+            savedFileMap.puc = vehicle.hasPuc;
+            savedFileMap.insurance = vehicle.hasInsurance;
 
             $(".editContainer").show();
             $("#heading").text("EDIT VEHICLE DETAILS");
-			$('#saveVehicle').prop("disabled", false);
+            $('#saveVehicle').prop("disabled", false);
         },
         error: function () {
             alert("Error fetching vehicle");
@@ -425,33 +445,24 @@ function toggleButtons(type, hasFile) {
 }
 	
 $(document).on("click", ".view-btn", function () {
-
-    const vehicleNo = $("#vehicleNo").val();
     const type = $(this).data("type");
+    const fileInput = $("#upload" + type.charAt(0).toUpperCase() + type.slice(1) + "File")[0];
+    const file = fileInput?.files[0];
 
-    // Get corresponding file input
-	const $fileInput = $("#upload" + type.charAt(0).toUpperCase() + type.slice(1) + "File");
-    const file = $fileInput[0].files[0];
-
-    // CASE 1: No uploaded file & no saved data
-	if (!file && !$('.download-btn').is(':visible')) {
-	    alert("No document uploaded to view");
-	    return;
-	}
-
-
-    // CASE 2: ADD mode (file uploaded but not saved yet)
-    if (file && !$('.download-btn').is(':visible')) {
+    // If file is uploaded but not yet saved (ADD mode)
+    if (file) {
         const fileURL = URL.createObjectURL(file);
         window.open(fileURL, "_blank");
         return;
     }
-
-    // CASE 3: EDIT mode (already saved in DB)
-    window.open(
-        "/vehicle/" + vehicleNo + "/document/" + type,
-        "_blank"
-    );
+	
+	if (savedFileMap[type]) {
+	    const vehicleNo = $("#vehicleNo").val();
+	    window.open(`/vehicle/${vehicleNo}/document/${type}`, "_blank");
+	    return;
+	}
+	
+    alert("No document uploaded to view");
 });
 
 $(document).on("click", ".download-btn", function () {
@@ -462,11 +473,27 @@ $(document).on("click", ".download-btn", function () {
         "/vehicle/" + vehicleNo + "/document/" + type + "/download";
 });
 
-$(document).on('click','#closeVehicleDtls', function(){
-	
-	$('.editContainer').hide();
-	
+$(document).on('click', '#closeVehicleDtls', function () {
+
+    // Hide modal
+    $('.editContainer').hide();
+
+    // Clear all file inputs
+    $('input[type="file"]').val('');
+
+    // Clear all displayed file names
+    $("#fcFileName").text("");
+    $("#nocFileName").text("");
+    $("#rcFileName").text("");
+    $("#licenseFileName").text("");
+    $("#aadharFileName").text("");
+    $("#pucFileName").text("");
+    $("#insuranceFileName").text("");
+
+    // Optional: disable view buttons again
+    $(".view-btn").prop("disabled", true);
 });
+
 
 $("#uploadFcBtn").click(function () {
     $("#uploadFcFile").click();
