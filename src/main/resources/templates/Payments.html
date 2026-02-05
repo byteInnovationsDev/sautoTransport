@@ -37,6 +37,7 @@
 			    <i class="fa fa-search"></i>
 			    <input type="text" placeholder="Search vehicle/Driver" id="searchVehicle">
 			  </div>
+		<div id="paymentContent">
 			<div th:each="v, stat : ${vehicles}" class="vehicle-card vehicle"
 				th:data-vehicleno="${v.vehicleNo}" th:data-driver="${v.driverName}"
 				th:data-fc-exp="${v.fcExpiryDate}"
@@ -59,7 +60,7 @@
 			</div>
 
 		</div>
-
+	  </div>
 	</div>
 
 	<div class="modal" id="paymentModal">

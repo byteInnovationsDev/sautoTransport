@@ -81,6 +81,24 @@ public class MainManagerImpl implements MainManager{
 	            existing.setLicenseFileName(vehicle.getLicenseFileName());
 	            existing.setLicenseFileType(vehicle.getLicenseFileType());
 	        }
+	        
+	        if (vehicle.getPucFile() != null) {
+	            existing.setPucFile(vehicle.getPucFile());
+	            existing.setPucFileName(vehicle.getPucFileName());
+	            existing.setPucFileType(vehicle.getPucFileType());
+	        }
+
+	        if (vehicle.getAadharFile() != null) {
+	            existing.setAadharFile(vehicle.getAadharFile());
+	            existing.setAadharFileName(vehicle.getAadharFileName());
+	            existing.setAadharFileType(vehicle.getAadharFileType());
+	        }
+
+	        if (vehicle.getInsuranceFile() != null) {
+	            existing.setInsuranceFile(vehicle.getInsuranceFile());
+	            existing.setInsuranceFileName(vehicle.getInsuranceFileName());
+	            existing.setInsuranceFileType(vehicle.getInsuranceFileType());
+	        }
 
 	        vehicleRepo.save(existing);
 

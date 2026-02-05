@@ -305,3 +305,8 @@ body{
     cursor: pointer;
     border: none;
 }
+
+#paymentContent {
+    max-height: 550px;
+    overflow-y: scroll;
+}
